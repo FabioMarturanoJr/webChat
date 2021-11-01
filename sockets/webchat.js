@@ -57,6 +57,6 @@ module.exports = (io) => io.on('connection', async (socket) => {
   const { messages: oldMessages } = await getAll();
   socket.emit('LoadOldMessages', { oldMessages: processdbMessagens(oldMessages) });
   
-  socket.on('disconnect', () => disconnect(io, 'User'));
-  // socket.on('saiu', (nick) => disconnect(io, nick));
+  // socket.on('disconnect', () => disconnect(io, 'User'));
+  socket.on('saiu', (nick) => disconnect(io, nick));
 });

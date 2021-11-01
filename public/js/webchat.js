@@ -53,13 +53,13 @@ const conectMs = 'acabou de se conectar ';
 
 socket.on('conectUser', (user) => fillUl(`${user} ${conectMs}`, 'messages', 'message', 'message'));
 
-// const wellComeMs = 'Seja bem vindo ao WebChat !!!';
+const wellComeMs = 'Seja bem vindo ao WebChat !!!';
 
 socket.on('LoadOldMessages', ({ oldMessages }) => {
   oldMessages.forEach((chatMessage) => {
     fillUl(chatMessage, 'messages', 'message', 'message');
   });
-  // fillUl(wellComeMs, 'messages', 'message', 'message');
+  fillUl(wellComeMs, 'messages', 'message', 'message');
 });
 
 socket.on('loadUserList', (onlineUsers) => {
@@ -81,6 +81,6 @@ socket.on('updateUserList', (onlineUsers) => {
 socket.emit('addUserList', { nickname });
 
 window.onbeforeunload = (_e) => {
-  socket.disconnect();
-  // socket.emit('saiu', nickname);
+  // socket.disconnect();
+  socket.emit('saiu', nickname);
 };
