@@ -1,0 +1,3 @@
+git push deploy-webchat deploy-heroku-atlas:main
+
+git push heroku deploy-heroku-atlas:master
