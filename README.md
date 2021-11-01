@@ -29,12 +29,12 @@ Após cada um dos passos, haverá um exemplo do comando a ser digitado para faze
 2. Entre no diretório que acabou de criar e depois clone o projeto:
 ```javascript
   cd projetos-fabio
-  git clone git@github.com:FabioMarturanoJr/cookmaster.git
+  git clone git@github.com:FabioMarturanoJr/webChat.git
 ```
 
 3. Entre no diretório do projeto e instale as dependencias:
 ```javascript
-  cd cookmaster/
+  cd webChat/
   npm i
 ```
 
@@ -46,6 +46,6 @@ Após cada um dos passos, haverá um exemplo do comando a ser digitado para faze
 
 ## Deploy
 
-para o deploy hospedey a aplicação no heroku e o banco de dados no Atlas db
+para o deploy hospedei a aplicação no heroku e o banco de dados no Atlas db
 
 https://fabio-web-chat.herokuapp.com/
