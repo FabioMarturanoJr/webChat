@@ -1,10 +1,13 @@
 const mongoConnect = require('./connection');
 
 const saveMessage = async ({ message, nickname, timestamp }) => {
-  const MessagesCollection = await mongoConnect()
-    .then((db) => db.collection('messages'));
-
-  await MessagesCollection.insertOne({ message, nickname, timestamp });
+  try {
+    const MessagesCollection = await mongoConnect()
+      .then((db) => db.collection('messages'));
+      await MessagesCollection.insertOne({ message, nickname, timestamp });    
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const getAll = async () => {
