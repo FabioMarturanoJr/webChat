@@ -1,4 +1,4 @@
-// const { saveMessage, getAll } = require('../models/webchatModel');
+const { saveMessage, getAll } = require('../models/webchatModel');
 
 // let controlNickName = '';
 
@@ -18,8 +18,8 @@ const getNow = () => {
 
 const buildFullMessage = (timestamp, nickname, message) => `${timestamp} - ${nickname}: ${message}`;
 
-// const processdbMessagens = (oldMessages) => oldMessages
-//   .map(({ timestamp, nickname, message }) => buildFullMessage(timestamp, nickname, message));
+const processdbMessagens = (oldMessages) => oldMessages
+  .map(({ timestamp, nickname, message }) => buildFullMessage(timestamp, nickname, message));
 
 const Room = 'public';
 const onlineUsers = [];
@@ -50,12 +50,12 @@ module.exports = (io) => io.on('connection', async (socket) => {
 
   socket.on('message', async ({ chatMessage: message, room = Room, nickname }) => {
     const timestamp = getNow();
-    // await saveMessage({ message, nickname, timestamp });
+    await saveMessage({ message, nickname, timestamp });
     io.to(room).emit('message', buildFullMessage(timestamp, nickname, message));
   });
   
-  // const { messages: oldMessages } = await getAll();
-  // socket.emit('LoadOldMessages', { oldMessages: processdbMessagens(oldMessages) });
+  const { messages: oldMessages } = await getAll();
+  socket.emit('LoadOldMessages', { oldMessages: processdbMessagens(oldMessages) });
   
   // socket.on('disconnect', () => disconnect(io, 'User'));
   socket.on('saiu', (nick) => disconnect(io, nick));
